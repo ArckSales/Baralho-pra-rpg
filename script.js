@@ -77,20 +77,31 @@ let sacrificadas = []; // índices das cartas normais já sacrificadas
 
 function embaralhar() {
   baralho = cartas.map((_, indice) => indice);
-  for (let i = baralho.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [baralho[i], baralho[j]] = [baralho[j], baralho[i]];
-  }
+  embaralharArray(baralho);
 
   trunfoAtivo = false;
   sacrificadas = [];
   painelSacrificio.hidden = true;
   listaSacrificadas.innerHTML = "";
-  botaoSacrificar.disabled = false;
+
+  travado = false;
+  carta.classList.remove("virada", "trunfo", "esgotada");
+  instrucao.textContent = "clique na carta";
+
+  revelacaoVazia.hidden = false;
+  revelacaoConteudo.hidden = true;
+  efeitoEspecial.hidden = true;
+  efeitoEspecial.textContent = "";
 
   atualizarContador();
   botaoEmbaralhar.hidden = true;
-  carta.classList.remove("esgotada");
+}
+
+function embaralharArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
 
 function atualizarContador() {
@@ -105,12 +116,7 @@ function atualizarContador() {
 
 // ---- 4. Puxar carta ----
 
-function puxarCarta() {
-  if (travado || baralho.length === 0) return;
-
-  travado = true;
-
-  const indice = baralho.pop();
+function revelarCarta(indice) {
   const escolhida = pegarCarta(indice);
   const ehTrunfo = indice === INDICE_TRUNFO;
 
@@ -128,7 +134,15 @@ function puxarCarta() {
 
   efeitoEspecial.hidden = !ehTrunfo;
   efeitoEspecial.textContent = ehTrunfo ? escolhida.efeito : "";
+}
 
+function puxarCarta() {
+  if (travado || baralho.length === 0) return;
+
+  travado = true;
+
+  const indice = baralho.pop();
+  revelarCarta(indice);
   atualizarContador();
 
   if (baralho.length === 0) {
@@ -164,25 +178,23 @@ function sacrificar() {
   const candidatos = baralho.filter(indice => indice !== INDICE_TRUNFO);
   if (candidatos.length === 0) return;
 
+  travado = true;
+
   const escolhido = candidatos[Math.floor(Math.random() * candidatos.length)];
   baralho.splice(baralho.indexOf(escolhido), 1);
   sacrificadas.push(escolhido);
-
-  baralho.push(INDICE_TRUNFO);
-  for (let i = baralho.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [baralho[i], baralho[j]] = [baralho[j], baralho[i]];
-  }
-
   trunfoAtivo = true;
-  botaoSacrificar.disabled = true;
 
   painelSacrificio.hidden = false;
   const item = document.createElement("li");
   item.textContent = cartas[escolhido].nome;
   listaSacrificadas.appendChild(item);
 
+  // Mostra o Trunfo direto, sem precisar clicar na carta
+  revelarCarta(INDICE_TRUNFO);
   atualizarContador();
+
+  setTimeout(() => { travado = false; }, 700);
 }
 
 botaoSacrificar.addEventListener("click", sacrificar);
