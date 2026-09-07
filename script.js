@@ -4,9 +4,9 @@
 
 const cartas = [
   {
-    nome: "A Chama",
+    nome: "Deus Ecaflip",
     descricao: "Um impulso que não pede permissão. Hoje é dia de começar algo, mesmo sem ter tudo pronto.",
-    arte: svgChama()
+    arte: '<img src="Imagens/DeusEcaflip.png" alt="Deus Ecaflip">'
   },
   {
     nome: "O Silêncio",
