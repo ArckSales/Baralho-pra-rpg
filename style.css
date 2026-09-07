@@ -116,7 +116,7 @@ body {
 
 .verso {
   background: linear-gradient(160deg, #2b1f3d, #1d1530);
-  border: 6px solid rgba(233, 228, 218, 0.95);
+  border: 25px solid rgba(233, 228, 218, 0.95);
   padding: 12px;
   overflow: hidden;
 }
