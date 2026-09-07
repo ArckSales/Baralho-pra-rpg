@@ -26,7 +26,7 @@ const cartas = [
   {
     nome: "Deus kilorf",
     descricao: "Resultados pequenos hoje são a base de algo maior. Continue regando.",
-    arte: '<img src="Imagens/Deus Kilorf.png" alt="Deus Kilorf">'
+    arte: '<img src="Imagens/Deus%20Kilorf.png" alt="Deus Kilorf">'
   },
   {
     nome: "Roda da fortuna",
