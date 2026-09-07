@@ -176,7 +176,14 @@ function puxarCarta() {
 
 function virarDeVolta() {
   carta.classList.remove("virada");
-  instrucao.textContent = baralho.length > 0 ? "clique na carta" : "baralho esgotado";
+
+  if (baralho.length > 0) {
+    instrucao.textContent = "clique na carta";
+    return;
+  }
+
+  instrucao.textContent = "embaralhando...";
+  botaoEmbaralhar.hidden = true;
 }
 
 carta.addEventListener("click", () => {
