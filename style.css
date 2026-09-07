@@ -76,7 +76,7 @@ body {
   background: none;
   padding: 0;
   width: clamp(200px, 55vw, 400px);
-  aspect-ratio: 5 / 7;
+  aspect-ratio: 619 / 1080;
   cursor: pointer;
   perspective: 1400px;
 }
