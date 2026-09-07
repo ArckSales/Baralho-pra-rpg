@@ -5,32 +5,32 @@
 const cartas = [
   {
     nome: "Deus Ecaflip",
-    descricao: "Um impulso que não pede permissão. Ganha 3 ações até o fim do turno.",
+    descricao: "Um impulso que não pede permissão. Ganha 2 ações até o fim do turno.",
     arte: '<img src="Imagens/DeusEcaflip.png" alt="Deus Ecaflip">'
   },
   {
     nome: "Petisco",
-    descricao: "Nem toda resposta precisa ser dada agora. Ganha 5 níveis de curas concedidas até o fim do turno.",
+    descricao: "Nem toda resposta precisa ser dada agora. Ganha 3 níveis de curas concedidas até o fim do turno.",
     arte: '<img src="Imagens/Petisco.png" alt="Petisco">'
   },
   {
     nome: "Lua peluda",
-    descricao: "Algo que parecia separado está mais perto de se conectar do que você imagina. Ganha 2 níveis de margem crítica e +1d4 em testes de ataque",
+    descricao: "Algo que parecia separado está mais perto de se conectar do que você imagina. Ganha 2 níveis de margem crítica",
     arte: '<img src="Imagens/Roda.png" alt="Lua peluda">'
   },
   {
     nome: "Meowrtírio",
-    descricao: "O que incomoda no outro costuma apontar para dentro. Você e aliados adjacentes recebem 4d10 de Proteção.",
+    descricao: "O que incomoda no outro costuma apontar para dentro. Você e aliados adjacentes recebem 2d10 de Proteção.",
     arte: '<img src="Imagens/Meowrtírio.png" alt="Meowrtírio">'
   },
   {
     nome: "Deus kilorf",
-    descricao: "Resultados pequenos hoje são a base de algo maior. Perde 1 ação até o fim do turno",
+    descricao: "Resultados pequenos hoje são a base de algo maior. Perde 2 ações até o fim do turno",
     arte: '<img src="Imagens/Deus%20Kilorf.png" alt="Deus Kilorf">'
   },
   {
     nome: "Roda da fortuna",
-    descricao: "Nem tudo precisa ser resolvido agora. Ganha +4d6 em rolagens de dano até o fim do turno.",
+    descricao: "Nem tudo precisa ser resolvido agora. Ganha +2d6 em rolagens de dano até o fim do turno.",
     arte: '<img src="Imagens/Rodadafortuna.png" alt="A Roda">'
   }
 ];
