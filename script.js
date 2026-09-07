@@ -35,6 +35,19 @@ const cartas = [
   }
 ];
 
+// A carta especial ativada pelo sacrifício. Edite nome, descricao e efeito à vontade.
+const trunfo = {
+  nome: "Trunfo",
+  descricao: "Uma carta fora do baralho normal, liberada por um sacrifício.",
+  efeito: "Efeito: escreva aqui a regra especial do Trunfo.",
+  arte: svgTrunfo()
+};
+const INDICE_TRUNFO = cartas.length; // 6 — não colide com os índices 0-5 do baralho normal
+
+function pegarCarta(indice) {
+  return indice === INDICE_TRUNFO ? trunfo : cartas[indice];
+}
+
 // ---- 2. Elementos ----
 
 const carta = document.getElementById("carta");
@@ -47,13 +60,20 @@ const revelacaoConteudo = document.getElementById("revelacaoConteudo");
 const nomeCarta = document.getElementById("nomeCarta");
 const textoCarta = document.getElementById("textoCarta");
 
+const efeitoEspecial = document.getElementById("efeitoEspecial");
+
 const contador = document.getElementById("contador");
 const botaoEmbaralhar = document.getElementById("botaoEmbaralhar");
+const botaoSacrificar = document.getElementById("botaoSacrificar");
+const painelSacrificio = document.getElementById("painelSacrificio");
+const listaSacrificadas = document.getElementById("listaSacrificadas");
 
 // ---- 3. Estado do baralho (Sistema B: sem repetição até acabar) ----
 
 let baralho = [];
 let travado = false; // evita clique durante a animação
+let trunfoAtivo = false; // já foi liberado por um sacrifício nesta rodada?
+let sacrificadas = []; // índices das cartas normais já sacrificadas
 
 function embaralhar() {
   baralho = cartas.map((_, indice) => indice);
@@ -61,6 +81,13 @@ function embaralhar() {
     const j = Math.floor(Math.random() * (i + 1));
     [baralho[i], baralho[j]] = [baralho[j], baralho[i]];
   }
+
+  trunfoAtivo = false;
+  sacrificadas = [];
+  painelSacrificio.hidden = true;
+  listaSacrificadas.innerHTML = "";
+  botaoSacrificar.disabled = false;
+
   atualizarContador();
   botaoEmbaralhar.hidden = true;
   carta.classList.remove("esgotada");
@@ -71,6 +98,9 @@ function atualizarContador() {
   contador.textContent = restantes === 1
     ? "1 carta no baralho"
     : `${restantes} cartas no baralho`;
+
+  const candidatosRestantes = baralho.filter(indice => indice !== INDICE_TRUNFO).length;
+  botaoSacrificar.disabled = trunfoAtivo || candidatosRestantes === 0;
 }
 
 // ---- 4. Puxar carta ----
@@ -81,10 +111,12 @@ function puxarCarta() {
   travado = true;
 
   const indice = baralho.pop();
-  const escolhida = cartas[indice];
+  const escolhida = pegarCarta(indice);
+  const ehTrunfo = indice === INDICE_TRUNFO;
 
   frenteArte.innerHTML = escolhida.arte;
   frenteNome.textContent = escolhida.nome;
+  carta.classList.toggle("trunfo", ehTrunfo);
 
   carta.classList.add("virada");
   instrucao.textContent = "clique para virar de volta";
@@ -93,6 +125,9 @@ function puxarCarta() {
   revelacaoConteudo.hidden = false;
   nomeCarta.textContent = escolhida.nome;
   textoCarta.textContent = escolhida.descricao;
+
+  efeitoEspecial.hidden = !ehTrunfo;
+  efeitoEspecial.textContent = ehTrunfo ? escolhida.efeito : "";
 
   atualizarContador();
 
@@ -119,6 +154,38 @@ carta.addEventListener("click", () => {
 });
 
 botaoEmbaralhar.addEventListener("click", embaralhar);
+
+// ---- 4.1 Sacrifício ----
+// Inutiliza uma carta aleatória ainda não puxada e libera o Trunfo no lugar dela.
+
+function sacrificar() {
+  if (travado || trunfoAtivo) return;
+
+  const candidatos = baralho.filter(indice => indice !== INDICE_TRUNFO);
+  if (candidatos.length === 0) return;
+
+  const escolhido = candidatos[Math.floor(Math.random() * candidatos.length)];
+  baralho.splice(baralho.indexOf(escolhido), 1);
+  sacrificadas.push(escolhido);
+
+  baralho.push(INDICE_TRUNFO);
+  for (let i = baralho.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [baralho[i], baralho[j]] = [baralho[j], baralho[i]];
+  }
+
+  trunfoAtivo = true;
+  botaoSacrificar.disabled = true;
+
+  painelSacrificio.hidden = false;
+  const item = document.createElement("li");
+  item.textContent = cartas[escolhido].nome;
+  listaSacrificadas.appendChild(item);
+
+  atualizarContador();
+}
+
+botaoSacrificar.addEventListener("click", sacrificar);
 
 // ---- 5. Artes simples em SVG (placeholders — troque por <img> quando tiver o Canva pronto) ----
 
@@ -159,6 +226,12 @@ function svgMare() {
     <path d="M15 40 Q27 30 40 40 T65 40 T90 40"/>
     <path d="M15 55 Q27 45 40 55 T65 55 T90 55"/>
     <path d="M15 70 Q27 60 40 70 T65 70 T90 70"/>
+  </svg>`;
+}
+
+function svgTrunfo() {
+  return `<svg viewBox="0 0 100 100" fill="none" stroke="#6b5a91" stroke-width="2.5">
+    <path d="M50 10 L61 39 L92 39 L67 58 L77 88 L50 69 L23 88 L33 58 L8 39 L39 39 Z" stroke-linejoin="round"/>
   </svg>`;
 }
 

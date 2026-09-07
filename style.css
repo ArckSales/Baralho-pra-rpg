@@ -203,6 +203,62 @@ body {
   color: var(--texto-claro);
 }
 
+.efeito-especial {
+  margin-top: 14px !important;
+  padding: 12px 14px;
+  border-left: 2px solid var(--violeta);
+  background: rgba(136, 121, 171, 0.1);
+  color: var(--violeta) !important;
+  font-size: 14px !important;
+  font-style: italic;
+}
+
+/* --- Carta especial: Trunfo --- */
+
+.carta.trunfo .frente {
+  background: linear-gradient(160deg, #2b1f3d, #efe6d8 130%);
+  border: 1px solid var(--violeta);
+}
+
+.carta.trunfo .frente-arte {
+  background: rgba(136, 121, 171, 0.25);
+}
+
+.carta.trunfo .frente-nome {
+  color: var(--violeta);
+}
+
+/* --- Sacrifício --- */
+
+.sacrificio {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(233, 228, 218, 0.12);
+}
+
+.sacrificio-titulo {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--texto-fraco);
+}
+
+.sacrificio-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sacrificio-lista li {
+  font-size: 14px;
+  color: var(--texto-claro);
+  opacity: 0.6;
+  text-decoration: line-through;
+  text-decoration-color: var(--dourado);
+}
+
 /* --- Rodapé --- */
 
 .rodape {
@@ -218,7 +274,13 @@ body {
   color: var(--texto-fraco);
 }
 
-.embaralhar {
+.rodape-botoes {
+  display: flex;
+  gap: 12px;
+}
+
+.embaralhar,
+.sacrificar {
   appearance: none;
   border: 1px solid var(--dourado);
   background: transparent;
@@ -228,12 +290,28 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
 }
 
-.embaralhar:hover {
+.embaralhar:hover,
+.sacrificar:hover:not(:disabled) {
   background: var(--dourado);
   color: var(--tinta);
+}
+
+.sacrificar {
+  border-color: var(--violeta);
+  color: var(--violeta);
+}
+
+.sacrificar:hover:not(:disabled) {
+  background: var(--violeta);
+  color: var(--tinta);
+}
+
+.sacrificar:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 @media (max-width: 560px) {

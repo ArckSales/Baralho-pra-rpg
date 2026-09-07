@@ -41,7 +41,13 @@
           <div class="revelacao-conteudo" id="revelacaoConteudo" hidden>
             <h2 id="nomeCarta"></h2>
             <p id="textoCarta"></p>
+            <p class="efeito-especial" id="efeitoEspecial" hidden></p>
           </div>
+        </div>
+
+        <div class="sacrificio" id="painelSacrificio" hidden>
+          <p class="sacrificio-titulo">Cartas sacrificadas</p>
+          <ul class="sacrificio-lista" id="listaSacrificadas"></ul>
         </div>
       </div>
 
@@ -49,7 +55,10 @@
 
     <footer class="rodape">
       <p class="contador" id="contador">6 cartas no baralho</p>
-      <button class="embaralhar" id="botaoEmbaralhar" hidden>Embaralhar novamente</button>
+      <div class="rodape-botoes">
+        <button class="sacrificar" id="botaoSacrificar">Sacrifício</button>
+        <button class="embaralhar" id="botaoEmbaralhar" hidden>Embaralhar novamente</button>
+      </div>
     </footer>
 
   </main>
