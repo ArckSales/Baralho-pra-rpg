@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Baralho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="palco">
+
+    <header class="topo">
+      <p class="rotulo">baralho pessoal</p>
+      <h1>Puxe uma carta</h1>
+    </header>
+
+    <section class="mesa">
+
+      <div class="area-carta">
+        <button class="carta" id="carta" aria-label="Puxar uma carta">
+          <div class="carta-interior">
+            <div class="face verso">
+              <div class="verso-desenho"></div>
+            </div>
+            <div class="face frente">
+              <div class="frente-arte" id="frenteArte"></div>
+              <p class="frente-nome" id="frenteNome"></p>
+            </div>
+          </div>
+        </button>
+        <p class="instrucao" id="instrucao">clique na carta</p>
+      </div>
+
+      <div class="area-texto">
+        <div class="revelacao" id="revelacao">
+          <p class="revelacao-vazia" id="revelacaoVazia">A descrição da carta sorteada aparece aqui.</p>
+          <div class="revelacao-conteudo" id="revelacaoConteudo" hidden>
+            <h2 id="nomeCarta"></h2>
+            <p id="textoCarta"></p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="rodape">
+      <p class="contador" id="contador">6 cartas no baralho</p>
+      <button class="embaralhar" id="botaoEmbaralhar" hidden>Embaralhar novamente</button>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

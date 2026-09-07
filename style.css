@@ -1,0 +1,248 @@
+:root {
+  --tinta: #14131a;
+  --tinta-2: #1d1b26;
+  --pergaminho: #efe6d8;
+  --pergaminho-sombra: #ddd0ba;
+  --dourado: #b8935a;
+  --violeta: #8879ab;
+  --texto-claro: #e9e4da;
+  --texto-fraco: #948c92;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--tinta);
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(136, 121, 171, 0.08), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(184, 147, 90, 0.07), transparent 50%);
+  color: var(--texto-claro);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+.palco {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  gap: 40px;
+}
+
+.topo {
+  text-align: center;
+}
+
+.rotulo {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: var(--dourado);
+  letter-spacing: 0.02em;
+}
+
+.topo h1 {
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.mesa {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 780px;
+}
+
+/* --- Carta --- */
+
+.area-carta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.carta {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  width: 240px;
+  height: 336px;
+  cursor: pointer;
+  perspective: 1400px;
+}
+
+.carta:focus-visible .carta-interior {
+  outline: 2px solid var(--dourado);
+  outline-offset: 4px;
+}
+
+.carta-interior {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0.1, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: 10px;
+}
+
+.carta.virada .carta-interior {
+  transform: rotateY(180deg);
+}
+
+.carta:not(.virada):not(.esgotada):hover .carta-interior {
+  transform: translateY(-4px);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+}
+
+.verso {
+  background: linear-gradient(160deg, #2b1f3d, #1d1530);
+  border: 1px solid rgba(184, 147, 90, 0.35);
+}
+
+.verso-desenho {
+  width: 72%;
+  height: 82%;
+  border: 1px solid rgba(184, 147, 90, 0.5);
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(45deg, rgba(184,147,90,0.12) 0 2px, transparent 2px 14px),
+    radial-gradient(circle at center, rgba(184,147,90,0.22), transparent 60%);
+}
+
+.frente {
+  background: var(--pergaminho);
+  color: #2a2420;
+  transform: rotateY(180deg);
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--pergaminho-sombra);
+}
+
+.frente-arte {
+  width: 100%;
+  flex: 1;
+  border-radius: 6px;
+  background: var(--pergaminho-sombra);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frente-arte svg {
+  width: 56%;
+  height: 56%;
+}
+
+.frente-nome {
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px;
+  text-align: center;
+}
+
+.instrucao {
+  margin: 0;
+  font-size: 13px;
+  color: var(--texto-fraco);
+}
+
+/* --- Revelação --- */
+
+.area-texto {
+  width: 320px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.revelacao {
+  width: 100%;
+}
+
+.revelacao-vazia {
+  margin: 0;
+  color: var(--texto-fraco);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.revelacao-conteudo h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0 0 12px;
+  color: var(--pergaminho);
+}
+
+.revelacao-conteudo p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--texto-claro);
+}
+
+/* --- Rodapé --- */
+
+.rodape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.contador {
+  margin: 0;
+  font-size: 13px;
+  color: var(--texto-fraco);
+}
+
+.embaralhar {
+  appearance: none;
+  border: 1px solid var(--dourado);
+  background: transparent;
+  color: var(--dourado);
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.embaralhar:hover {
+  background: var(--dourado);
+  color: var(--tinta);
+}
+
+@media (max-width: 560px) {
+  .mesa {
+    gap: 28px;
+  }
+  .area-texto {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+}
