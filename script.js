@@ -39,7 +39,7 @@ const cartas = [
 const trunfo = {
   nome: "Trunfo",
   descricao: "Uma carta fora do baralho normal, liberada por um sacrifício.",
-  efeito: "recebeu a benção do Deus ecaflipSeu pai você teleporta pro reino divino dos ecaflip o Ecafliperama lá você descansa gradualmente recuperando 4d6 PV e PE no fim de cada turno seu. Pode voltar para o plano normal com 1 ação",
+  efeito: "recebeu a benção do Deus ecaflip, seu pai. Você teleporta pro reino divino dos ecaflip o Ecafliperama lá você descansa gradualmente recuperando 4d6 PV e PE no fim de cada turno seu. Pode voltar para o plano normal com 1 ação",
   arte: '<img src="Imagens/Trunfo.png" alt="Trunfo">'
 };
 const INDICE_TRUNFO = cartas.length; // 6 — não colide com os índices 0-5 do baralho normal
