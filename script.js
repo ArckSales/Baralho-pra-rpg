@@ -74,8 +74,14 @@ let baralho = [];
 let travado = false; // evita clique durante a animação
 let trunfoAtivo = false; // já foi liberado por um sacrifício nesta rodada?
 let sacrificadas = []; // índices das cartas normais já sacrificadas
+let timerEmbaralharAutomatico = null;
 
 function embaralhar() {
+  if (timerEmbaralharAutomatico) {
+    clearTimeout(timerEmbaralharAutomatico);
+    timerEmbaralharAutomatico = null;
+  }
+
   baralho = cartas.map((_, indice) => indice);
   embaralharArray(baralho);
 
@@ -95,6 +101,16 @@ function embaralhar() {
 
   atualizarContador();
   botaoEmbaralhar.hidden = true;
+}
+
+function agendarEmbaralhamentoAutomatico() {
+  if (timerEmbaralharAutomatico) {
+    clearTimeout(timerEmbaralharAutomatico);
+  }
+
+  timerEmbaralharAutomatico = setTimeout(() => {
+    embaralhar();
+  }, 1500);
 }
 
 function embaralharArray(array) {
@@ -146,8 +162,9 @@ function puxarCarta() {
   atualizarContador();
 
   if (baralho.length === 0) {
-    instrucao.textContent = "baralho esgotado";
-    botaoEmbaralhar.hidden = false;
+    instrucao.textContent = "baralho esgotado, embaralhando...";
+    botaoEmbaralhar.hidden = true;
+    agendarEmbaralhamentoAutomatico();
   }
 
   setTimeout(() => { travado = false; }, 700);
