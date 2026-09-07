@@ -114,7 +114,7 @@ function agendarEmbaralhamentoAutomatico() {
 
   timerEmbaralharAutomatico = setTimeout(() => {
     embaralhar();
-  }, 1500);
+  }, 5000);
 }
 
 function embaralharArray(array) {
