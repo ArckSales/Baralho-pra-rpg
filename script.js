@@ -9,29 +9,29 @@ const cartas = [
     arte: '<img src="Imagens/DeusEcaflip.png" alt="Deus Ecaflip">'
   },
   {
-    nome: "O Silêncio",
+    nome: "Petisco",
     descricao: "Nem toda resposta precisa ser dada agora. Deixe uma pergunta descansar antes de respondê-la.",
-    arte: svgSilencio()
+    arte: '<img src="Imagens/Petisco.png" alt="Petisco">'
   },
   {
-    nome: "A Ponte",
+    nome: "Lua peluda",
     descricao: "Algo que parecia separado está mais perto de se conectar do que você imagina.",
-    arte: svgPonte()
+    arte: '<img src="Imagens/Roda.png" alt="Lua peluda">'
   },
   {
-    nome: "O Espelho",
+    nome: "Meowrtírio",
     descricao: "O que incomoda no outro costuma apontar para dentro. Vale a pena olhar de novo.",
-    arte: svgEspelho()
+    arte: '<img src="Imagens/Meowrtírio.png" alt="Meowrtírio">'
   },
   {
-    nome: "A Semente",
+    nome: "Deus kilorf",
     descricao: "Resultados pequenos hoje são a base de algo maior. Continue regando.",
-    arte: svgSemente()
+    arte: '<img src="Imagens/Deus Kilorf.png" alt="Deus Kilorf">'
   },
   {
-    nome: "A Maré",
+    nome: "Roda da fortuna",
     descricao: "Nem tudo precisa ser resolvido agora. Alguns ciclos só pedem para serem esperados.",
-    arte: svgMare()
+    arte: '<img src="Imagens/Rodadafortuna.png" alt="A Roda">'
   }
 ];
 
