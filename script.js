@@ -5,32 +5,32 @@
 const cartas = [
   {
     nome: "Deus Ecaflip",
-    descricao: "Um impulso que não pede permissão. Hoje é dia de começar algo, mesmo sem ter tudo pronto.",
+    descricao: "Um impulso que não pede permissão. Ganha 3 ações até o fim do turno.",
     arte: '<img src="Imagens/DeusEcaflip.png" alt="Deus Ecaflip">'
   },
   {
     nome: "Petisco",
-    descricao: "Nem toda resposta precisa ser dada agora. Deixe uma pergunta descansar antes de respondê-la.",
+    descricao: "Nem toda resposta precisa ser dada agora. Ganha 5 níveis de curas concedidas até o fim do turno.",
     arte: '<img src="Imagens/Petisco.png" alt="Petisco">'
   },
   {
     nome: "Lua peluda",
-    descricao: "Algo que parecia separado está mais perto de se conectar do que você imagina.",
+    descricao: "Algo que parecia separado está mais perto de se conectar do que você imagina. Ganha 2 níveis de margem crítica e +1d4 em testes de ataque",
     arte: '<img src="Imagens/Roda.png" alt="Lua peluda">'
   },
   {
     nome: "Meowrtírio",
-    descricao: "O que incomoda no outro costuma apontar para dentro. Vale a pena olhar de novo.",
+    descricao: "O que incomoda no outro costuma apontar para dentro. Você e aliados adjacentes recebem 4d10 de Proteção.",
     arte: '<img src="Imagens/Meowrtírio.png" alt="Meowrtírio">'
   },
   {
     nome: "Deus kilorf",
-    descricao: "Resultados pequenos hoje são a base de algo maior. Continue regando.",
+    descricao: "Resultados pequenos hoje são a base de algo maior. Perde 1 ação até o fim do turno",
     arte: '<img src="Imagens/Deus%20Kilorf.png" alt="Deus Kilorf">'
   },
   {
     nome: "Roda da fortuna",
-    descricao: "Nem tudo precisa ser resolvido agora. Alguns ciclos só pedem para serem esperados.",
+    descricao: "Nem tudo precisa ser resolvido agora. Ganha +4d6 em rolagens de dano até o fim do turno.",
     arte: '<img src="Imagens/Rodadafortuna.png" alt="A Roda">'
   }
 ];
@@ -39,7 +39,7 @@ const cartas = [
 const trunfo = {
   nome: "Trunfo",
   descricao: "Uma carta fora do baralho normal, liberada por um sacrifício.",
-  efeito: "Efeito: escreva aqui a regra especial do Trunfo.",
+  efeito: "recebeu a benção do Deus ecaflipSeu pai você teleporta pro reino divino dos ecaflip o Ecafliperama lá você descansa gradualmente recuperando 4d6 PV e PE no fim  de cada turno seu. Pode voltar para o plano normal com 1 ação"
   arte: svgTrunfo()
 };
 const INDICE_TRUNFO = cartas.length; // 6 — não colide com os índices 0-5 do baralho normal
