@@ -92,7 +92,7 @@ function embaralhar() {
 
   travado = false;
   carta.classList.remove("virada", "trunfo", "esgotada");
-  instrucao.textContent = "clique na carta";
+  instrucao.textContent = "embaralhando...";
 
   revelacaoVazia.hidden = false;
   revelacaoConteudo.hidden = true;
@@ -101,6 +101,10 @@ function embaralhar() {
 
   atualizarContador();
   botaoEmbaralhar.hidden = true;
+
+  setTimeout(() => {
+    instrucao.textContent = "clique na carta";
+  }, 500);
 }
 
 function agendarEmbaralhamentoAutomatico() {
@@ -162,7 +166,7 @@ function puxarCarta() {
   atualizarContador();
 
   if (baralho.length === 0) {
-    instrucao.textContent = "baralho esgotado, embaralhando...";
+    instrucao.textContent = "embaralhando...";
     botaoEmbaralhar.hidden = true;
     agendarEmbaralhamentoAutomatico();
   }
