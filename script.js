@@ -65,6 +65,7 @@ function pegarCarta(indice) {
 // ---- 2. Elementos ----
 
 const carta = document.getElementById("carta");
+const versoImg = document.querySelector(".verso-img");
 const frenteArte = document.getElementById("frenteArte");
 const frenteNome = document.getElementById("frenteNome");
 const instrucao = document.getElementById("instrucao");
@@ -107,6 +108,7 @@ function embaralhar() {
   travado = false;
   carta.classList.remove("virada", "trunfo", "especial", "destino", "esgotada");
   document.body.classList.remove("tema-destino");
+  versoImg.src = "Imagens/verso.png";
   instrucao.textContent = "embaralhando...";
 
   revelacaoVazia.hidden = false;
@@ -163,6 +165,9 @@ function revelarCarta(indice) {
   carta.classList.toggle("especial", ehEspecial && !ehTrunfo);
   carta.classList.toggle("destino", tema === "destino" && !ehTrunfo);
   document.body.classList.toggle("tema-destino", tema === "destino" && !ehTrunfo);
+  versoImg.src = ehEspecial && !ehTrunfo
+    ? "Imagens/Fundovermelho.png"
+    : "Imagens/verso.png";
 
   carta.classList.add("virada");
   instrucao.textContent = "clique para virar de volta";
