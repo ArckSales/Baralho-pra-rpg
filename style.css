@@ -9,6 +9,11 @@
   --texto-fraco: #948c92;
 }
 
+body.tema-destino {
+  --dourado: #961609;
+  --violeta: #961609;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -257,6 +262,46 @@ body {
 
 .carta.trunfo .frente-nome {
   color: var(--dourado);
+}
+
+/* --- Shushus --- */
+
+.carta.especial .frente {
+  background: linear-gradient(160deg, #493326, var(--pergaminho) 75%);
+  border-color: #c7744f;
+}
+
+.carta.especial .frente-arte {
+  background: rgba(199, 116, 79, 0.24);
+  border-color: rgba(199, 116, 79, 0.9);
+}
+
+.carta.especial .frente-nome {
+  color: #9e4f36;
+}
+
+.carta.destino .frente {
+  background: linear-gradient(160deg, #961609, var(--pergaminho) 75%);
+  border-color: #961609;
+}
+
+.carta.destino .frente-arte {
+  background: rgba(150, 22, 9, 0.24);
+  border-color: #961609;
+  box-shadow: inset 0 0 0 1px rgba(150, 22, 9, 0.35);
+}
+
+.carta.destino .frente-nome {
+  color: #961609;
+}
+
+.carta.destino ~ .instrucao {
+  color: #961609;
+}
+
+body.tema-destino .revelacao-conteudo h2,
+body.tema-destino .revelacao-conteudo p {
+  color: #961609;
 }
 
 /* --- Sacrifício --- */

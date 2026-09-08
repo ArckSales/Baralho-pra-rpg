@@ -32,6 +32,20 @@ const cartas = [
     nome: "Roda da fortuna",
     descricao: "Nem tudo precisa ser resolvido agora. Ganha +2d6 em rolagens de dano até o fim do turno.",
     arte: '<img src="Imagens/Rodadafortuna.png" alt="A Roda">'
+  },
+  {
+    nome: "O Destino",
+    descricao: "O risco escolhe seu campeão. Coloca uma marca em um alvo, causando 6d8 de dano em um alvo à escolha no fim do seu turno.",
+    arte: '<img src="Imagens/Destino.png" alt="Destino">',
+    especial: true,
+    tema: "destino"
+  },
+  {
+    nome: "Desventura",
+    descricao: "A sorte muda de lado. criaturas dentro de uma área de 3m à sua escolha perdem 1 ação e recebem -1d6 em testes até o fim da rodada.",
+    arte: '<img src="Imagens/Desventura.png" alt="Desventura">',
+    especial: true,
+    tema: "destino"
   }
 ];
 
@@ -42,7 +56,7 @@ const trunfo = {
   efeito: "recebeu a benção do Deus ecaflip, seu pai. Você teleporta pro reino divino dos ecaflip o Ecafliperama lá você descansa gradualmente recuperando 4d6 PV e PE no fim de cada turno seu. Pode voltar para o plano normal com 1 ação",
   arte: '<img src="Imagens/Trunfo.png" alt="Trunfo">'
 };
-const INDICE_TRUNFO = cartas.length; // 6 — não colide com os índices 0-5 do baralho normal
+const INDICE_TRUNFO = cartas.length; // não colide com os índices do baralho normal
 
 function pegarCarta(indice) {
   return indice === INDICE_TRUNFO ? trunfo : cartas[indice];
@@ -91,7 +105,8 @@ function embaralhar() {
   listaSacrificadas.innerHTML = "";
 
   travado = false;
-  carta.classList.remove("virada", "trunfo", "esgotada");
+  carta.classList.remove("virada", "trunfo", "especial", "destino", "esgotada");
+  document.body.classList.remove("tema-destino");
   instrucao.textContent = "embaralhando...";
 
   revelacaoVazia.hidden = false;
@@ -139,10 +154,15 @@ function atualizarContador() {
 function revelarCarta(indice) {
   const escolhida = pegarCarta(indice);
   const ehTrunfo = indice === INDICE_TRUNFO;
+  const ehEspecial = escolhida.especial === true;
+  const tema = escolhida.tema || "";
 
   frenteArte.innerHTML = escolhida.arte;
   frenteNome.textContent = escolhida.nome;
   carta.classList.toggle("trunfo", ehTrunfo);
+  carta.classList.toggle("especial", ehEspecial && !ehTrunfo);
+  carta.classList.toggle("destino", tema === "destino" && !ehTrunfo);
+  document.body.classList.toggle("tema-destino", tema === "destino" && !ehTrunfo);
 
   carta.classList.add("virada");
   instrucao.textContent = "clique para virar de volta";
